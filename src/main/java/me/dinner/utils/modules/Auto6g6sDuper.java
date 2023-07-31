@@ -5,6 +5,7 @@ import baritone.api.pathing.goals.GoalBlock;
 import me.dinner.utils.Addon;
 import me.dinner.utils.event.DupeStateChangeEvent;
 import me.dinner.utils.utils.DupeProvider;
+import me.dinner.utils.utils.DupeUtils;
 import me.dinner.utils.utils.State;
 import meteordevelopment.meteorclient.events.game.OpenScreenEvent;
 import meteordevelopment.meteorclient.events.render.Render3DEvent;
@@ -154,7 +155,7 @@ public class Auto6g6sDuper extends Module {
                 int feed = 0;
 
                 for (DonkeyEntity donkey : getDonkeys(6))
-                    if (feedDonkey(donkey)) feed++;
+                    if (DupeUtils.feedDonkey(donkey)) feed++;
 
                 if (feed >= feedCount.get()) Addon.getProvider().setState(State.GrownUp);
             }
@@ -169,7 +170,7 @@ public class Auto6g6sDuper extends Module {
 
                 for (DonkeyEntity donkey : getDonkeys(6)) {
                     if (!donkey.isBaby()) continue;
-                    if (feedDonkey(donkey)) feed++;
+                    if (DupeUtils.feedDonkey(donkey)) feed++;
                 }
 
                 if (feed >= feedCount.get()) Addon.getProvider().setState(State.Tame);
@@ -330,27 +331,6 @@ public class Auto6g6sDuper extends Module {
         }
 
         return donkeyList;
-    }
-
-    private boolean feedDonkey(DonkeyEntity donkey) {
-        if (mc.player == null || mc.interactionManager == null) return false;
-        if (!donkey.isAlive()) return false;
-
-        FindItemResult result = InvUtils.findInHotbar(Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE, Items.WHEAT, Items.GOLDEN_CARROT, Items.APPLE, Items.SUGAR, Items.HAY_BLOCK);
-        if (!result.found()) return false;
-
-        int currentSlot = mc.player.getInventory().selectedSlot;
-        InvUtils.swap(result.slot(), false);
-
-        ActionResult actionResult = mc.interactionManager.interactEntity(
-            mc.player,
-            donkey,
-            result.getHand()
-        );
-
-        InvUtils.swap(currentSlot, false);
-
-        return actionResult.isAccepted();
     }
 
     @EventHandler

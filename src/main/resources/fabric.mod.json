@@ -1,24 +1,24 @@
 {
   "schemaVersion": 1,
-  "id": "addon-template",
+  "id": "utils",
   "version": "${version}",
-  "name": "Addon Template",
-  "description": "An addon template for the Meteor addons.",
+  "name": "6G6SUtils",
+  "description": "Meteor addon for making some actions on 6g6s.org easier.",
   "authors": [
-    "seasnail"
+    "06ED"
   ],
   "contact": {
     "repo": "https://github.com/MeteorDevelopment/meteor-addon-template"
   },
-  "icon": "assets/template/icon.png",
+  "icon": "assets/utils/icon.png",
   "environment": "client",
   "entrypoints": {
     "meteor": [
-      "me.dinner.duper.Addon"
+      "me.dinner.utils.Addon"
     ]
   },
   "mixins": [
-    "addon-template.mixins.json"
+    "utils.mixins.json"
   ],
   "custom": {
     "meteor-client:color": "225,25,25"
