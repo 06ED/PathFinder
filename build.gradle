@@ -26,6 +26,7 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     // Meteor
+    modImplementation "baritone:fabric:${project.minecraft_version}-SNAPSHOT"
     modImplementation "meteordevelopment:meteor-client:${project.meteor_version}"
 
     // Reflections
